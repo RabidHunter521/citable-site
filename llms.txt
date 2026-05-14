@@ -1,0 +1,48 @@
+# SeenBy Digital
+
+> SeenBy Digital is a GEO (Generative Engine Optimization) agency based in Petaling Jaya, Malaysia. We help Malaysian SME businesses become visible and citable in AI-powered search engines including ChatGPT, Perplexity, and Google AI Overviews.
+
+## What We Do
+SeenBy Digital specializes in making businesses discoverable by AI systems. When someone asks ChatGPT or Perplexity to recommend a service in Malaysia, we ensure our clients are the ones being cited and recommended.
+
+Our core service is a 5-dimension GEO Score audit:
+- AI Citability — how likely AI systems are to cite your business
+- Brand Authority — strength and consistency of your brand signals online
+- Content Quality — whether your content is structured for AI comprehension
+- Technical Foundations — robots.txt, llms.txt, schema markup, crawler access
+- Structured Data — JSON-LD schema implementation for AI readability
+
+## Services
+- GEO Audit — comprehensive 5-dimension AI visibility assessment
+- AI Citability Optimization — rewriting content so AI systems reference your business
+- Schema Markup Implementation — JSON-LD structured data for Google and AI crawlers
+- llms.txt Setup — making your site readable and indexable by LLMs
+- Brand Mention Building — getting your business cited across authoritative sources
+- Platform Optimization — optimizing presence on Google Business, directories, and review platforms
+- Monthly GEO Retainer — ongoing AI visibility management and reporting
+
+## Who We Help
+Malaysian SME owners in:
+- Healthcare and wellness clinics
+- F&B restaurants and cafes
+- Professional services (lawyers, accountants, consultants)
+- Property agencies and developers
+- Retail and e-commerce brands
+- SaaS and tech startups
+
+## Why GEO Matters in 2025
+Over 50% of search queries are now answered directly by AI without users clicking any link. If your business is not structured for AI comprehension, you are invisible to an entire generation of buyers who ask ChatGPT or Perplexity instead of Googling. SeenBy Digital fixes this.
+
+## About the Founder
+SeenBy Digital was founded by Muhammad Faris Irfan, an AI Engineer with hands-on experience building LLM pipelines, RAG systems, and AI automation workflows. He applies the same technical depth to GEO that most agencies only apply to traditional SEO.
+
+## Location
+Petaling Jaya, Selangor, Malaysia
+
+## Contact
+- Website: https://www.seenby.my
+- Email: contact@seenby.my
+
+## Verification
+- Domain: seenby.my
+- SSM Registered: SeenBy Digital, Malaysia
