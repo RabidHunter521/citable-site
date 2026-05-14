@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SeenBy — Your business, seen by AI</title>
+<meta name="description" content="GEO — Generative Engine Optimization for Malaysian businesses. Get seen by ChatGPT, Perplexity, and Google AI Overviews.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+body{font-family:'DM Sans',sans-serif;font-weight:300;color:#5f5f58;background:#f7f7f4;overflow-x:hidden;line-height:1.75;font-size:16px}
+img,svg{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+button{border:none;background:none;cursor:pointer;font-family:inherit}
+ul,ol{list-style:none}
+
+/* Noise overlay */
+body::before{content:'';position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;opacity:0.018;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+.serif{font-family:'Instrument Serif',serif}
+.sans{font-family:'DM Sans',sans-serif}
+
+/* Layout */
+.container{max-width:1100px;margin:0 auto;padding-left:clamp(20px,5vw,80px);padding-right:clamp(20px,5vw,80px)}
+.section-pad{padding-top:clamp(80px,12vw,160px);padding-bottom:clamp(80px,12vw,160px)}
+
+/* Section tag */
+.section-tag{font-size:11px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:#3dba7e;margin-bottom:16px;display:inline-block}
+
+/* Headings */
+h2{font-family:'Instrument Serif',serif;font-weight:400;color:#080808;font-size:clamp(36px,5vw,64px);line-height:1.12;margin-bottom:20px}
+h2 em{font-style:italic;color:#3dba7e}
+
+/* Sub text */
+.section-sub{font-size:17px;color:#76766f;max-width:520px;line-height:1.7;font-weight:300}
+
+/* CTA buttons */
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:#3dba7e;color:#080808;font-weight:600;font-size:16px;padding:14px 32px;border-radius:100px;transition:all 0.25s ease;position:relative;overflow:hidden}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 4px 20px rgba(61,186,126,0.25)}
+.btn-outline{display:inline-flex;align-items:center;gap:8px;background:transparent;color:#5f5f58;font-weight:500;font-size:15px;padding:13px 28px;border-radius:100px;border:1.5px solid rgba(8,8,8,0.2);transition:all 0.25s ease}
+.btn-outline:hover{border-color:#080808;color:#080808;transform:translateY(-1px)}
+
+/* Premium shadow */
+.shadow-soft{box-shadow:0 1px 2px rgba(8,8,8,0.04),0 4px 12px rgba(8,8,8,0.03),0 12px 40px rgba(8,8,8,0.04)}
+.shadow-elevated{box-shadow:0 1px 3px rgba(8,8,8,0.04),0 8px 24px rgba(8,8,8,0.06),0 24px 60px rgba(8,8,8,0.06)}
+.shadow-green{box-shadow:0 1px 3px rgba(8,8,8,0.04),0 8px 24px rgba(8,8,8,0.05),0 24px 60px rgba(8,8,8,0.05),0 0 0 1px rgba(61,186,126,0.1),0 8px 40px rgba(61,186,126,0.08)}
+
+/* ======================== NAV ======================== */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px clamp(20px,5vw,80px);display:flex;align-items:center;justify-content:space-between;transition:all 0.4s ease}
+.nav.scrolled{background:rgba(255,255,255,0.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(8,8,8,0.06);padding:12px clamp(20px,5vw,80px)}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:22px;color:#080808;display:flex;align-items:center;gap:0;letter-spacing:-0.5px}
+.nav-logo-dot{width:6px;height:6px;border-radius:50%;background:#3dba7e;display:inline-block;margin-left:2px;margin-bottom:-2px}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{font-size:13px;color:#5f5f58;transition:color 0.2s;font-weight:400}
+.nav-links a:hover{color:#080808}
+.nav-cta{font-size:13px;font-weight:500;color:#080808;background:#3dba7e;padding:8px 18px;border-radius:100px;transition:all 0.25s ease}
+.nav-cta:hover{box-shadow:0 2px 12px rgba(61,186,126,0.3);transform:translateY(-1px)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:1002;padding:4px}
+.hamburger span{display:block;width:22px;height:1.5px;background:#080808;transition:all 0.3s ease}
+.mobile-menu{position:fixed;top:0;left:0;right:0;bottom:0;background:#ffffff;z-index:1001;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:32px;opacity:0;visibility:hidden;pointer-events:none}
+.mobile-menu.open{opacity:1;visibility:visible;pointer-events:auto}
+.mobile-menu a{font-family:'Instrument Serif',serif;font-size:36px;color:#080808;transition:color 0.2s}
+.mobile-menu a:hover{color:#3dba7e}
+.mobile-close{position:absolute;top:20px;right:clamp(20px,5vw,80px);width:32px;height:32px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.mobile-close::before,.mobile-close::after{content:'';position:absolute;width:20px;height:1.5px;background:#080808}
+.mobile-close::before{transform:rotate(45deg)}
+.mobile-close::after{transform:rotate(-45deg)}
+
+@media(max-width:768px){
+.nav-links{display:none}
+.hamburger{display:flex}
+}
+
+/* ======================== HERO ======================== */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(to bottom,#ffffff 0%,#f7f7f4 100%);overflow:hidden;padding-top:80px}
+.hero-canvas{position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.hero-content{position:relative;z-index:1;text-align:center;max-width:800px;padding:0 clamp(20px,5vw,80px)}
+.hero-pill{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(61,186,126,0.3);border-radius:100px;padding:6px 16px;margin-bottom:32px;font-size:13px;color:#2d9e6b;font-weight:500}
+.hero-pill-dot{width:6px;height:6px;border-radius:50%;background:#3dba7e;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
+.hero h1{font-family:'Instrument Serif',serif;font-size:clamp(56px,9vw,110px);line-height:1.05;color:#080808;font-weight:400;margin-bottom:24px;letter-spacing:-1px}
+.hero h1 .green{color:#3dba7e;font-style:italic}
+.hero-sub{font-size:17px;color:#5f5f58;max-width:520px;margin:0 auto 32px;line-height:1.7;font-weight:300}
+.hero-proof{font-size:13px;color:#8a8a82;margin-top:16px}
+
+@media(max-width:768px){
+.hero h1{font-size:clamp(40px,10vw,64px)}
+.hero{min-height:auto;padding-top:120px;padding-bottom:80px}
+}
+
+/* ======================== PROBLEM ======================== */
+.problem{background:#f7f7f4}
+.browser-window{max-width:720px;margin:40px auto 0;border-radius:12px;overflow:hidden;background:#ffffff;border:1px solid rgba(8,8,8,0.1)}
+.browser-chrome{display:flex;align-items:center;gap:8px;padding:14px 16px;background:#ffffff;border-bottom:1px solid rgba(8,8,8,0.06)}
+.traffic-light{width:12px;height:12px;border-radius:50%}
+.tl-red{background:#ff5f57}
+.tl-yellow{background:#febc2e}
+.tl-green{background:#28c840}
+.url-bar{flex:1;margin-left:12px;background:#f5f5f3;border-radius:6px;padding:6px 12px;font-size:12px;color:#8a8a82;display:flex;align-items:center;gap:6px}
+.chat-area{background:#f9f9f7;padding:28px 24px;min-height:280px}
+.chat-msg{margin-bottom:16px;max-width:85%}
+.chat-msg.user{margin-left:auto;text-align:right}
+.chat-msg.user .msg-bubble{background:#3dba7e;color:#fff;display:inline-block;padding:10px 16px;border-radius:16px 16px 4px 16px;font-size:14px;line-height:1.5;font-weight:400}
+.chat-msg.ai .msg-bubble{background:#ffffff;color:#080808;display:inline-block;padding:14px 18px;border-radius:16px 16px 16px 4px;font-size:14px;line-height:1.7;border:1px solid rgba(8,8,8,0.06);text-align:left}
+.chat-msg.ai .msg-bubble .competitor{color:#1a6b47;font-weight:600}
+.not-found{background:#fff5f5;border-left:3px solid #e24b4a;padding:10px 14px;margin-top:12px;border-radius:0 6px 6px 0;font-size:13px;color:#cc3333;line-height:1.6}
+.browser-note{text-align:center;font-size:14px;color:#8a8a82;margin-top:24px}
+
+/* ======================== STATS ======================== */
+.stats-section{background:#f7f7f4;padding-top:0;padding-bottom:clamp(80px,12vw,160px)}
+.stats-card{background:#ffffff;border-radius:24px;border:1px solid rgba(8,8,8,0.06);padding:48px;display:grid;grid-template-columns:repeat(4,1fr);gap:0;max-width:1100px;margin:0 auto;position:relative}
+.stat-item{text-align:center;padding:0 24px;position:relative}
+.stat-item:not(:last-child)::after{content:'';position:absolute;right:0;top:10%;height:80%;width:1px;background:rgba(8,8,8,0.06)}
+.stat-number{font-family:'Instrument Serif',serif;font-size:clamp(40px,5vw,60px);line-height:1.1;margin-bottom:12px;font-weight:400}
+.stat-label{font-size:13px;color:#5f5f58;line-height:1.6;font-weight:300;max-width:200px;margin:0 auto}
+@media(max-width:768px){
+.stats-card{grid-template-columns:repeat(2,1fr);gap:32px;padding:32px}
+.stat-item:not(:last-child)::after{display:none}
+}
+@media(max-width:480px){
+.stats-card{grid-template-columns:1fr}
+}
+
+/* ======================== WHAT IS GEO ======================== */
+.geo-section{background:#f7f7f4}
+.geo-card{background:#ffffff;border-radius:24px;border:1px solid rgba(8,8,8,0.06);padding:clamp(32px,5vw,60px);display:grid;grid-template-columns:1.1fr 0.9fr;gap:clamp(32px,4vw,60px);align-items:start}
+.geo-left p{font-size:17px;color:#5f5f58;line-height:1.75;margin-bottom:20px;font-weight:300}
+.objection-box{background:#f7f7f4;border-left:3px solid #3dba7e;border-radius:0 8px 8px 0;padding:12px 16px;margin-bottom:12px;font-size:13px;color:#5f5f58;line-height:1.6}
+.objection-box strong{color:#080808;font-weight:500;display:block;margin-bottom:4px;font-size:14px}
+.compare-card{border-radius:14px;padding:24px;border:1px solid rgba(8,8,8,0.06);margin-bottom:16px;transition:transform 0.3s ease;transform-style:preserve-3d;will-change:transform;position:relative;overflow:hidden}
+.compare-card .shine{position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none;opacity:0;background:radial-gradient(circle at var(--mx) var(--my),rgba(255,255,255,0.8) 0%,transparent 60%);transition:opacity 0.3s}
+.compare-neutral{background:#f7f7f4}
+.compare-highlight{background:#eef5f0;border-color:rgba(61,186,126,0.3)}
+.compare-label{font-size:11px;text-transform:uppercase;letter-spacing:1px;font-weight:500;margin-bottom:8px}
+.compare-label.neutral{color:#8a8a82}
+.compare-label.green{color:#2d9e6b}
+.compare-title{font-family:'Instrument Serif',serif;font-size:20px;color:#080808;margin-bottom:8px}
+.compare-desc{font-size:13px;color:#5f5f58;line-height:1.6;font-weight:300}
+@media(max-width:768px){
+.geo-card{grid-template-columns:1fr}
+}
+
+/* ======================== HOW IT WORKS ======================== */
+.process-section{background:#ffffff}
+.process-header{text-align:center;margin-bottom:56px}
+.steps-row{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;position:relative}
+.steps-line{position:absolute;top:28px;left:calc(12.5% + 10px);right:calc(12.5% + 10px);height:1px;background:rgba(8,8,8,0.1);z-index:0}
+.step-card{background:#f7f7f4;border:1px solid rgba(8,8,8,0.06);border-radius:16px;padding:28px;position:relative;transform-style:preserve-3d;will-change:transform;transition:transform 0.3s ease;overflow:hidden}
+.step-card .shine{position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none;opacity:0;background:radial-gradient(circle at var(--mx) var(--my),rgba(255,255,255,0.8) 0%,transparent 60%);transition:opacity 0.3s}
+.step-circle{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;margin-bottom:20px;position:relative;z-index:1}
+.step-circle.filled{background:#080808;color:#fff}
+.step-circle.outlined{border:1.5px solid #080808;color:#080808;background:transparent}
+.step-title{font-size:16px;font-weight:500;color:#080808;margin-bottom:8px}
+.step-desc{font-size:13px;color:#5f5f58;line-height:1.6;font-weight:300}
+@media(max-width:768px){
+.steps-row{grid-template-columns:1fr;max-width:400px;margin:0 auto}
+.steps-line{display:none}
+}
+
+/* ======================== GEO SCORE ======================== */
+.score-section{background:#f7f7f4;position:relative;overflow:hidden}
+.score-canvas{position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.score-content{position:relative;z-index:1;text-align:center}
+.score-card{max-width:520px;margin:40px auto 0;background:#ffffff;border:1px solid rgba(61,186,126,0.2);border-radius:20px;padding:32px;text-align:left}
+.score-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:24px}
+.score-header-left .score-meta{font-size:12px;color:#8a8a82;margin-bottom:4px;font-weight:400}
+.score-header-left .score-biz{font-family:'Instrument Serif',serif;font-size:20px;color:#080808}
+.score-header-right{text-align:right}
+.score-big{font-family:'Instrument Serif',serif;font-size:64px;color:#3dba7e;line-height:1}
+.score-of{font-size:18px;color:#8a8a82;font-weight:300}
+.score-divider{height:1px;background:rgba(8,8,8,0.06);margin-bottom:24px}
+.dimension{margin-bottom:18px}
+.dimension:last-child{margin-bottom:0}
+.dimension-header{display:flex;justify-content:space-between;margin-bottom:6px}
+.dimension-name{font-size:13px;color:#5f5f58;font-weight:400}
+.dimension-val{font-size:13px;color:#080808;font-weight:500}
+.dimension-track{height:5px;background:#f1f1ed;border-radius:3px;overflow:hidden}
+.dimension-fill{height:100%;border-radius:3px;width:0}
+.fill-red{background:#e24b4a}
+.fill-amber{background:#E8A830}
+
+/* ======================== DELIVERABLES ======================== */
+.deliverables-section{background:#ffffff}
+.deliverables-header{text-align:center;margin-bottom:48px}
+.deliverables-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.deliv-card{background:#f7f7f4;border:1px solid rgba(8,8,8,0.06);border-radius:14px;padding:24px;transition:all 0.25s ease}
+.deliv-card:hover{background:#ffffff;border-color:rgba(61,186,126,0.3);transform:translateY(-3px);box-shadow:0 4px 20px rgba(8,8,8,0.06)}
+.deliv-icon{width:36px;height:36px;border-radius:8px;background:#eef5f0;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.deliv-icon svg{width:18px;height:18px;color:#3dba7e;stroke:#3dba7e;fill:none}
+.deliv-title{font-size:15px;font-weight:500;color:#080808;margin-bottom:8px}
+.deliv-desc{font-size:13px;color:#5f5f58;line-height:1.6;font-weight:300}
+@media(max-width:768px){
+.deliverables-grid{grid-template-columns:1fr}
+}
+
+/* ======================== PRICING ======================== */
+.pricing-section{background:#f7f7f4}
+.pricing-header{text-align:center;margin-bottom:48px}
+.pricing-layout{display:grid;grid-template-columns:0.6fr 1.4fr;gap:24px;max-width:920px;margin:0 auto;align-items:start}
+.price-card{background:#ffffff;border-radius:20px;padding:clamp(28px,4vw,44px);transition:transform 0.3s ease}
+.price-featured{border:1px solid rgba(61,186,126,0.3)}
+.price-secondary{border:1px solid rgba(8,8,8,0.08)}
+.price-label{font-size:11px;text-transform:uppercase;letter-spacing:1px;font-weight:500;margin-bottom:8px}
+.price-label.green{color:#2d9e6b}
+.price-label.muted{color:#8a8a82}
+.price-name{font-family:'Instrument Serif',serif;color:#080808;margin-bottom:8px}
+.price-name.large{font-size:36px}
+.price-name.small{font-size:24px}
+.price-amount{font-family:'Instrument Serif',serif;color:#3dba7e;margin-bottom:4px}
+.price-amount.large{font-size:52px}
+.price-amount.dark{color:#080808}
+.price-amount.small{font-size:36px}
+.price-note{font-size:13px;color:#8a8a82;margin-bottom:20px}
+.price-divider{height:1px;background:rgba(8,8,8,0.06);margin-bottom:20px}
+.price-features{margin-bottom:28px}
+.price-feature{display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;font-size:14px;color:#5f5f58;line-height:1.5}
+.check-circle{width:20px;height:20px;min-width:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.check-green{background:#eef5f0}
+.check-green svg{stroke:#3dba7e}
+.check-gray{background:#f5f5f3}
+.check-gray svg{stroke:#8a8a82}
+.price-btn-primary{display:block;text-align:center;background:#3dba7e;color:#080808;font-weight:600;font-size:15px;padding:14px;border-radius:100px;transition:all 0.25s ease;width:100%}
+.price-btn-primary:hover{transform:translateY(-1px);box-shadow:0 4px 20px rgba(61,186,126,0.25)}
+.price-btn-outline{display:block;text-align:center;border:1.5px solid #080808;color:#080808;font-weight:500;font-size:15px;padding:13px;border-radius:100px;transition:all 0.25s ease;width:100%}
+.price-btn-outline:hover{background:#080808;color:#fff}
+@media(max-width:768px){
+.pricing-layout{grid-template-columns:1fr}
+}
+
+/* ======================== FAQ ======================== */
+.faq-section{background:#ffffff}
+.faq-header{text-align:center;margin-bottom:48px}
+.faq-list{max-width:680px;margin:0 auto}
+.faq-item{border-top:1px solid rgba(8,8,8,0.08);padding:20px 0}
+.faq-item:last-child{border-bottom:1px solid rgba(8,8,8,0.08)}
+.faq-q{display:flex;justify-content:space-between;align-items:center;cursor:pointer;gap:16px}
+.faq-q-text{font-size:16px;font-weight:500;color:#080808;flex:1}
+.faq-toggle{width:22px;height:22px;min-width:22px;border-radius:50%;border:1px solid rgba(8,8,8,0.12);background:#ffffff;display:flex;align-items:center;justify-content:center;transition:all 0.25s ease}
+.faq-toggle svg{width:10px;height:10px;stroke:#080808;transition:transform 0.3s}
+.faq-item.open .faq-toggle{background:#080808;border-color:#080808}
+.faq-item.open .faq-toggle svg{stroke:#fff;transform:rotate(180deg)}
+.faq-a{height:0;overflow:hidden}
+.faq-a-inner{padding-top:12px;font-size:15px;color:#5f5f58;line-height:1.75;font-weight:300}
+
+/* ======================== FINAL CTA ======================== */
+.final-cta{background:linear-gradient(180deg,#f7f7f4 0%,#eef5f0 100%);position:relative;overflow:hidden;text-align:center}
+.final-canvas{position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.final-content{position:relative;z-index:1}
+.final-cta h2{font-size:clamp(48px,7vw,88px)}
+.final-sub{font-size:17px;color:#5f5f58;max-width:440px;margin:0 auto 32px;line-height:1.7;font-weight:300}
+.final-buttons{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
+.final-note{font-size:13px;color:#8a8a82}
+
+/* ======================== FOOTER ======================== */
+.footer{background:#ffffff;border-top:1px solid rgba(8,8,8,0.06);padding:28px clamp(20px,5vw,80px);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-logo{font-family:'Instrument Serif',serif;font-size:18px;color:#8a8a82;display:flex;align-items:center}
+.footer-logo-dot{width:5px;height:5px;border-radius:50%;background:#3dba7e;display:inline-block;margin-left:2px;margin-bottom:-1px}
+.footer-copy{font-size:12px;color:#8a8a82}
+
+/* Animation init states */
+.anim-init{opacity:0;transform:translateY(24px)}
+.tag-init{opacity:0;transform:translateX(-16px)}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav-logo">seenby<span class="nav-logo-dot"></span></a>
+  <div class="nav-links">
+    <a href="#how-it-works">How it works</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#faq">FAQ</a>
+    <a href="mailto:hello@seenby.my?subject=Free GEO Score Request" class="nav-cta">Check your visibility</a>
+  </div>
+  <div class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-close" id="mobileClose"></div>
+  <a href="#how-it-works" class="mm-link">How it works</a>
+  <a href="#pricing" class="mm-link">Pricing</a>
+  <a href="#faq" class="mm-link">FAQ</a>
+  <a href="mailto:hello@seenby.my?subject=Free GEO Score Request" class="mm-link" style="font-size:24px;color:#3dba7e">Check your visibility</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <canvas class="hero-canvas" id="heroCanvas"></canvas>
+  <div class="hero-content">
+    <div class="hero-pill" style="opacity:0"><span class="hero-pill-dot"></span>AI search visibility for Malaysian businesses</div>
+    <h1 style="opacity:0">Your business,<br><span class="green">seen by AI.</span></h1>
+    <p class="hero-sub" style="opacity:0">Right now, someone in KL is asking ChatGPT to recommend a business like yours. Your competitor's name comes up. Yours doesn't. We fix that — in 48 hours.</p>
+    <div style="opacity:0" id="heroCta">
+      <a href="mailto:hello@seenby.my?subject=Free GEO Score Request" class="btn-primary">Get your free GEO score →</a>
+    </div>
+    <p class="hero-proof" style="opacity:0">Free in 48 hours. No commitment. No agency pitch.</p>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem section-pad" id="problem">
+  <div class="container" style="text-align:center">
+    <div class="section-tag tag-init">What's happening right now</div>
+    <h2 class="anim-init">Your competitors are<br>already showing up.</h2>
+    <p class="section-sub anim-init" style="margin:0 auto 0">Every day, customers in your city ask AI who to call. Here's what they see.</p>
+    <div class="browser-window shadow-elevated anim-init" id="demoWindow">
+      <div class="browser-chrome">
+        <span class="traffic-light tl-red"></span>
+        <span class="traffic-light tl-yellow"></span>
+        <span class="traffic-light tl-green"></span>
+        <div class="url-bar">
+          <svg width="10" height="12" viewBox="0 0 10 12" fill="none"><rect x="1.5" y="5" width="7" height="5.5" rx="1" stroke="#8a8a82" stroke-width="1.2"/><path d="M3 5V3.5a2 2 0 014 0V5" stroke="#8a8a82" stroke-width="1.2"/></svg>
+          chat.openai.com
+        </div>
+      </div>
+      <div class="chat-area" id="chatArea">
+        <div class="chat-msg user"><div class="msg-bubble" id="userMsg"></div></div>
+        <div class="chat-msg ai" style="display:none" id="aiResponse"><div class="msg-bubble" id="aiBubble"></div></div>
+      </div>
+    </div>
+    <p class="browser-note anim-init">This search happens 50,000+ times a day across Malaysia. Is your business appearing?</p>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats-section" style="padding-bottom:clamp(80px,12vw,160px)">
+  <div class="container">
+    <div class="stats-card shadow-soft anim-init" id="statsCard">
+      <div class="stat-item">
+        <div class="stat-number serif" data-target="527" data-suffix="%" style="color:#E8A830">0%</div>
+        <div class="stat-label">Growth in AI search traffic in the last 12 months. The channel is not coming — it's here.</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number serif" data-target="50" data-suffix="%" style="color:#080808">0%</div>
+        <div class="stat-label">Of traditional Google search traffic will be displaced by AI answers by 2028. Gartner, 2024.</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number serif" data-target="4.4" data-suffix="x" data-decimal="true" style="color:#080808">0x</div>
+        <div class="stat-label">More likely to contact a business discovered through an AI recommendation than a Google result.</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number serif" data-target="23" data-suffix="%" style="color:#3dba7e">0%</div>
+        <div class="stat-label">Of businesses are optimizing for AI search. Start today and you're already ahead of 77% of your competitors.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT IS GEO -->
+<section class="geo-section section-pad" id="geo">
+  <div class="container">
+    <div class="geo-card shadow-soft">
+      <div class="geo-left">
+        <div class="section-tag tag-init">What is GEO?</div>
+        <h2 class="anim-init">Not SEO.<br><em>Better.</em></h2>
+        <p class="anim-init">GEO is how you make your business the answer AI gives — instead of your competitor's.</p>
+        <p class="anim-init">Traditional SEO gets you ranked on Google — a channel losing traffic every quarter. GEO gets you seen by ChatGPT, Perplexity, and Google AI Overviews — where your customers are already going first.</p>
+        <p class="anim-init">The signals AI engines trust are not the same as Google's. They look at brand mentions, structured data, and whether your site even allows AI to read it. Most businesses in Malaysia are failing all three — including yours, almost certainly.</p>
+        <div class="objection-box anim-init">
+          <strong>Isn't this just SEO?</strong>
+          Completely different signals. GEO uses brand mentions, structured data, and AI crawler access — not backlinks.
+        </div>
+        <div class="objection-box anim-init">
+          <strong>How fast does it work?</strong>
+          Technical fixes move your score in 2–4 weeks. Brand authority compounds over 60–90 days.
+        </div>
+      </div>
+      <div class="geo-right">
+        <div class="compare-card compare-neutral anim-init" data-tilt>
+          <div class="shine"></div>
+          <div class="compare-label neutral">Traditional SEO</div>
+          <div class="compare-title">Rank on Google</div>
+          <div class="compare-desc">Backlinks, keywords, page speed. Works for blue-link results — a channel losing traffic every quarter.</div>
+        </div>
+        <div class="compare-card compare-highlight anim-init" data-tilt>
+          <div class="shine"></div>
+          <div class="compare-label green">GEO — What SeenBy does</div>
+          <div class="compare-title">Get seen by AI</div>
+          <div class="compare-desc">Brand mentions, citability scoring, schema markup, llms.txt, AI crawler access. The signals AI engines use to decide who to recommend.</div>
+        </div>
+        <div class="compare-card compare-neutral anim-init" data-tilt>
+          <div class="shine"></div>
+          <div class="compare-label neutral">The gap</div>
+          <div class="compare-title">77% of agencies offer neither</div>
+          <div class="compare-desc">Most agencies are still selling 2019-era SEO. The businesses investing in GEO now will be the ones their competitors can't displace later.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="process-section section-pad" id="how-it-works">
+  <div class="container">
+    <div class="process-header">
+      <div class="section-tag tag-init">Our process</div>
+      <h2 class="anim-init">From invisible to<br><em>seen</em> in four steps</h2>
+      <p class="section-sub anim-init" style="margin:0 auto">We handle everything. You get the results.</p>
+    </div>
+    <div class="steps-row">
+      <div class="steps-line"></div>
+      <div class="step-card anim-init" data-tilt>
+        <div class="shine"></div>
+        <div class="step-circle outlined">1</div>
+        <div class="step-title">Full audit in 48 hours</div>
+        <div class="step-desc">We score your AI visibility across five dimensions and tell you exactly why you're invisible.</div>
+      </div>
+      <div class="step-card anim-init" data-tilt>
+        <div class="shine"></div>
+        <div class="step-circle outlined">2</div>
+        <div class="step-title">Priority fix list</div>
+        <div class="step-desc">A scored action plan — what to fix, in what order, and what impact each fix will have on your score.</div>
+      </div>
+      <div class="step-card anim-init" data-tilt>
+        <div class="shine"></div>
+        <div class="step-circle outlined">3</div>
+        <div class="step-title">We implement</div>
+        <div class="step-desc">Schema markup, llms.txt, crawler access, citability rewrites. All handled by us.</div>
+      </div>
+      <div class="step-card anim-init" data-tilt>
+        <div class="shine"></div>
+        <div class="step-circle outlined">4</div>
+        <div class="step-title">Monthly monitoring</div>
+        <div class="step-desc">Monthly score tracking, fresh fixes, and a 30-minute call. We chase the AI engine updates so you don't have to.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GEO SCORE -->
+<section class="score-section section-pad" id="score">
+  <canvas class="score-canvas" id="scoreCanvas"></canvas>
+  <div class="container score-content">
+    <div class="section-tag tag-init">Your GEO score</div>
+    <h2 class="anim-init">Your GEO score.<br>The number your competitors<br>don't want you to have.</h2>
+    <p class="section-sub anim-init" style="margin:0 auto 0">A 0–100 score across five dimensions — the same signals AI engines use to decide who to recommend in your category.</p>
+    <div class="score-card shadow-green anim-init" id="scoreCard">
+      <div class="score-header">
+        <div class="score-header-left">
+          <div class="score-meta">GEO Visibility Report</div>
+          <div class="score-biz">Your Business Sdn Bhd</div>
+        </div>
+        <div class="score-header-right">
+          <span class="score-big" id="scoreNum">0</span><span class="score-of">/100</span>
+        </div>
+      </div>
+      <div class="score-divider"></div>
+      <div class="dimension">
+        <div class="dimension-header"><span class="dimension-name">AI Citability</span><span class="dimension-val">22/100</span></div>
+        <div class="dimension-track"><div class="dimension-fill fill-red" data-width="22"></div></div>
+      </div>
+      <div class="dimension">
+        <div class="dimension-header"><span class="dimension-name">Brand Authority</span><span class="dimension-val">18/100</span></div>
+        <div class="dimension-track"><div class="dimension-fill fill-red" data-width="18"></div></div>
+      </div>
+      <div class="dimension">
+        <div class="dimension-header"><span class="dimension-name">Content Quality</span><span class="dimension-val">55/100</span></div>
+        <div class="dimension-track"><div class="dimension-fill fill-amber" data-width="55"></div></div>
+      </div>
+      <div class="dimension">
+        <div class="dimension-header"><span class="dimension-name">Technical Foundations</span><span class="dimension-val">40/100</span></div>
+        <div class="dimension-track"><div class="dimension-fill fill-amber" data-width="40"></div></div>
+      </div>
+      <div class="dimension">
+        <div class="dimension-header"><span class="dimension-name">Structured Data</span><span class="dimension-val">10/100</span></div>
+        <div class="dimension-track"><div class="dimension-fill fill-red" data-width="10"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DELIVERABLES -->
+<section class="deliverables-section section-pad" id="deliverables">
+  <div class="container">
+    <div class="deliverables-header">
+      <div class="section-tag tag-init">What you get</div>
+      <h2 class="anim-init">Everything handled.<br><em>Nothing</em> on your plate.</h2>
+      <p class="section-sub anim-init" style="margin:0 auto">Every month, without you having to ask, you receive:</p>
+    </div>
+    <div class="deliverables-grid">
+      <div class="deliv-card anim-init">
+        <div class="deliv-icon"><svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+        <div class="deliv-title">Monthly GEO optimization</div>
+        <div class="deliv-desc">We keep every technical signal updated so AI engines always have a reason to recommend you.</div>
+      </div>
+      <div class="deliv-card anim-init">
+        <div class="deliv-icon"><svg viewBox="0 0 24 24" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
+        <div class="deliv-title">30-day social media calendar</div>
+        <div class="deliv-desc">Platform-ready content mapped to your brand voice and GEO brand mention strategy.</div>
+      </div>
+      <div class="deliv-card anim-init">
+        <div class="deliv-icon"><svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+        <div class="deliv-title">Email nurture sequence</div>
+        <div class="deliv-desc">5–8 email sequences ready to load into your email platform — written, structured, done.</div>
+      </div>
+      <div class="deliv-card anim-init">
+        <div class="deliv-icon"><svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <div class="deliv-title">Competitor monitoring</div>
+        <div class="deliv-desc">We track which competitors are gaining ground in AI search and tell you exactly how to stay ahead of them.</div>
+      </div>
+      <div class="deliv-card anim-init">
+        <div class="deliv-icon"><svg viewBox="0 0 24 24" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></div>
+        <div class="deliv-title">Brand mention scan</div>
+        <div class="deliv-desc">We find every opportunity to build your presence on YouTube, Reddit, LinkedIn, and Wikipedia — the platforms AI engines trust.</div>
+      </div>
+      <div class="deliv-card anim-init">
+        <div class="deliv-icon"><svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+        <div class="deliv-title">Two PDF reports</div>
+        <div class="deliv-desc">Marketing health report and GEO score report, every month, with a 30-minute walkthrough call.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section section-pad" id="pricing">
+  <div class="container">
+    <div class="pricing-header">
+      <div class="section-tag tag-init">Pricing</div>
+      <h2 class="anim-init">Two ways to start.<br><em>No hidden fees.</em> No lock-in.</h2>
+      <p class="section-sub anim-init" style="margin:0 auto">Not ready to commit? Start with the audit. 80% of clients move to the retainer after seeing their results.</p>
+    </div>
+    <div class="pricing-layout">
+      <div class="price-card price-secondary shadow-soft anim-init">
+        <div class="price-label muted">One-time</div>
+        <div class="price-name small">Starter Audit</div>
+        <div class="price-amount small dark">RM 800</div>
+        <div class="price-note">one-time</div>
+        <div class="price-divider"></div>
+        <div class="price-features">
+          <div class="price-feature"><span class="check-circle check-gray"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5 4.5-5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Full GEO audit with 5-dimension score</div>
+          <div class="price-feature"><span class="check-circle check-gray"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5 4.5-5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Full marketing health audit</div>
+          <div class="price-feature"><span class="check-circle check-gray"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5 4.5-5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Two professional PDF reports</div>
+          <div class="price-feature"><span class="check-circle check-gray"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5 4.5-5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Priority fix list with quick wins</div>
+          <div class="price-feature"><span class="check-circle check-gray"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5 4.5-5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>45-minute results walkthrough call</div>
+        </div>
+        <a href="mailto:hello@seenby.my?subject=Starter Audit Request" class="price-btn-outline">See your score</a>
+      </div>
+      <div class="price-card price-featured shadow-green anim-init">
+        <div class="price-label green">Monthly retainer</div>
+        <div class="price-name large">Growth Retainer</div>
+        <div class="price-amount large">RM 2,500</div>
+        <div class="price-note">per month — from</div>
+        <div class="price-divider"></div>
+        <div class="price-features">
+          <div class="price-feature"><span class="check-circle check-green"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5 4.5-5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Everything in Starter Audit</div>
+          <div class="price-feature"><span class="check-circle check-green"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5 4.5-5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Monthly GEO optimization and fixes</div>
+          <div class="price-feature"><span class="check-circle check-green"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5 4.5-5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>30-day social media calendar</div>
+          <div class="price-feature"><span class="check-circle check-green"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5 4.5-5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Email nurture sequence</div>
+          <div class="price-feature"><span class="check-circle check-green"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5 4.5-5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Competitor monitoring report</div>
+          <div class="price-feature"><span class="check-circle check-green"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5 4.5-5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Brand mention scan and strategy</div>
+          <div class="price-feature"><span class="check-circle check-green"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5 4.5-5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Monthly 30-minute check-in call</div>
+        </div>
+        <a href="mailto:hello@seenby.my?subject=Growth Retainer Inquiry" class="price-btn-primary">Get started</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section section-pad" id="faq">
+  <div class="container">
+    <div class="faq-header">
+      <div class="section-tag tag-init">FAQ</div>
+      <h2 class="anim-init">Things you're probably wondering</h2>
+      <p class="section-sub anim-init" style="margin:0 auto">Asked by business owners before they got started.</p>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">
+          <span class="faq-q-text">How is this different from SEO?</span>
+          <span class="faq-toggle"><svg viewBox="0 0 10 10" fill="none"><path d="M2 4l3 3 3-3" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Completely different channel, different signals, different results. Traditional SEO puts you on Google's blue links — a channel losing traffic every quarter. GEO gets you seen by AI — where customers are going first. The signals AI engines care about are brand mentions, structured data, and citability — not backlinks and keywords. We do both, but GEO is where the growth is going.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <span class="faq-q-text">How long before I see results?</span>
+          <span class="faq-toggle"><svg viewBox="0 0 10 10" fill="none"><path d="M2 4l3 3 3-3" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Technical fixes like schema markup, robots.txt, and llms.txt can move your GEO score within two to four weeks. Brand authority and citability improvements take two to three months to compound. We track your score every month so you see exactly what is moving and what is not.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <span class="faq-q-text">Do I need to change my whole website?</span>
+          <span class="faq-toggle"><svg viewBox="0 0 10 10" fill="none"><path d="M2 4l3 3 3-3" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">No. Most GEO fixes are additive — we add structured data, create an llms.txt file, update robots.txt, and rewrite specific content blocks. Your existing site stays intact. We work within your current CMS and only touch the pages and files that need updating.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <span class="faq-q-text">I already have an SEO agency. Will this conflict?</span>
+          <span class="faq-toggle"><svg viewBox="0 0 10 10" fill="none"><path d="M2 4l3 3 3-3" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Not at all — we work alongside your current agency, not against them. Your SEO agency owns Google. SeenBy owns AI search. They're separate channels. Most of our clients run both. The question is: are you being seen on the channel that's growing 527% year over year? Your SEO agency isn't doing that.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <span class="faq-q-text">What businesses is this for?</span>
+          <span class="faq-toggle"><svg viewBox="0 0 10 10" fill="none"><path d="M2 4l3 3 3-3" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Any business where customers search for recommendations online. F&B, professional services, retail, property, healthcare, SaaS, e-commerce. If someone in your city might ask ChatGPT or Perplexity for a recommendation in your category, you need GEO. The audit will tell you exactly how visible — how seen — you currently are.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <span class="faq-q-text">What happens after the audit?</span>
+          <span class="faq-toggle"><svg viewBox="0 0 10 10" fill="none"><path d="M2 4l3 3 3-3" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">You receive two PDF reports — one covering your full marketing health, one covering your GEO visibility score. We walk through the findings on a 45-minute call. You will know exactly what is broken, what to fix first, and what the projected impact is. There is no pressure to continue. Most clients do.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta section-pad" id="finalCta">
+  <canvas class="final-canvas" id="finalCanvas"></canvas>
+  <div class="container final-content">
+    <h2 class="anim-init">Your competitors are being<br><em>optimized right now.</em><br>Are you?</h2>
+    <p class="final-sub anim-init">In 48 hours you'll know exactly where your business stands in AI search — and what it would take to start being seen. No commitment, no agency pitch, no fluff.</p>
+    <div class="final-buttons anim-init">
+      <a href="mailto:hello@seenby.my?subject=Free GEO Score Request" class="btn-primary">Get my free score</a>
+      <a href="https://wa.me/601XXXXXXXX?text=Hi%2C%20I%27d%20like%20to%20get%20my%20free%20GEO%20score%20from%20SeenBy" class="btn-outline">WhatsApp us instead</a>
+    </div>
+    <p class="final-note anim-init">48 hours. Two PDF reports. Zero sales calls.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <span class="footer-logo">seenby<span class="footer-logo-dot"></span></span>
+  <span class="footer-copy">© 2026 SeenBy. Petaling Jaya, Malaysia.</span>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script>
+(function(){
+"use strict";
+
+// ── Lenis smooth scroll ──
+const lenis = new Lenis({
+  duration: 1.2,
+  easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+});
+function raf(time){ lenis.raf(time); requestAnimationFrame(raf); }
+requestAnimationFrame(raf);
+
+gsap.registerPlugin(ScrollTrigger);
+lenis.on('scroll', ScrollTrigger.update);
+gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+gsap.ticker.lagSmoothing(0);
+
+// ── Nav scroll ──
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 80);
+}, {passive:true});
+
+// ── Mobile menu ──
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+const mobileClose = document.getElementById('mobileClose');
+let menuOpen = false;
+
+function openMenu(){
+  menuOpen = true;
+  mobileMenu.classList.add('open');
+  document.body.style.overflow='hidden';
+  gsap.fromTo(mobileMenu, {opacity:0}, {opacity:1, duration:0.35, ease:'power2.out'});
+  gsap.fromTo('.mm-link', {y:30, opacity:0}, {y:0, opacity:1, stagger:0.06, duration:0.4, ease:'power2.out', delay:0.1});
+}
+function closeMenu(){
+  gsap.to(mobileMenu, {opacity:0, duration:0.25, ease:'power2.in', onComplete:()=>{
+    mobileMenu.classList.remove('open');
+    document.body.style.overflow='';
+    menuOpen = false;
+  }});
+}
+hamburger.addEventListener('click', openMenu);
+mobileClose.addEventListener('click', closeMenu);
+document.querySelectorAll('.mm-link').forEach(l => l.addEventListener('click', closeMenu));
+
+// ── Hero entrance ──
+const heroTl = gsap.timeline({delay:0.2});
+heroTl.fromTo('.hero-pill', {y:20,opacity:0},{y:0,opacity:1,duration:0.6,ease:'power2.out'})
+  .fromTo('.hero h1', {y:30,opacity:0},{y:0,opacity:1,duration:0.7,ease:'power2.out'},'-=0.3')
+  .fromTo('.hero-sub', {y:20,opacity:0},{y:0,opacity:1,duration:0.6,ease:'power2.out'},'-=0.3')
+  .fromTo('#heroCta', {y:16,opacity:0,scale:0.95},{y:0,opacity:1,scale:1,duration:0.5,ease:'power2.out'},'-=0.2')
+  .fromTo('.hero-proof', {y:12,opacity:0},{y:0,opacity:1,duration:0.5,ease:'power2.out'},'-=0.2');
+
+// ── Generic scroll animations ──
+document.querySelectorAll('.anim-init').forEach(el => {
+  gsap.to(el, {
+    opacity:1, y:0, duration:0.65, ease:'power2.out',
+    scrollTrigger:{trigger:el, start:'top 82%', once:true}
+  });
+});
+document.querySelectorAll('.tag-init').forEach(el => {
+  gsap.to(el, {
+    opacity:1, x:0, duration:0.55, ease:'power2.out',
+    scrollTrigger:{trigger:el, start:'top 85%', once:true}
+  });
+});
+
+// ── Typewriter Demo ──
+const userMsgEl = document.getElementById('userMsg');
+const aiResponseEl = document.getElementById('aiResponse');
+const aiBubbleEl = document.getElementById('aiBubble');
+const userText = "What is the best accounting firm in Petaling Jaya?";
+const aiParts = [
+  {type:'text', content:'Based on recent reviews and industry reputation, here are the top accounting firms in Petaling Jaya:\n\n'},
+  {type:'text', content:'1. '},
+  {type:'competitor', content:'Rival & Associates'},
+  {type:'text', content:' — Highly rated for SME tax advisory and audit services.\n\n2. '},
+  {type:'competitor', content:'Competitor Advisory Group'},
+  {type:'text', content:' — Known for responsive service and corporate secretarial support.\n\n3. '},
+  {type:'competitor', content:'Another Firm Sdn Bhd'},
+  {type:'text', content:' — Specializes in GST compliance and bookkeeping for startups.'},
+];
+const notFoundHTML = '<div class="not-found">Your business — not found. Your business has no presence in AI search. When customers ask, they\'re sent to your competitor — not you.</div>';
+
+let typewriterStarted = false;
+ScrollTrigger.create({
+  trigger: '#demoWindow',
+  start: 'top 80%',
+  once: true,
+  onEnter: () => {
+    if(typewriterStarted) return;
+    typewriterStarted = true;
+    typeUserMsg();
+  }
+});
+
+function typeUserMsg(){
+  let i=0;
+  const iv = setInterval(()=>{
+    userMsgEl.textContent = userText.slice(0,++i);
+    if(i >= userText.length){ clearInterval(iv); setTimeout(streamAI, 1000); }
+  }, 40);
+}
+
+function streamAI(){
+  aiResponseEl.style.display='block';
+  let fullText = '';
+  let partIdx=0, charIdx=0;
+  const iv = setInterval(()=>{
+    if(partIdx >= aiParts.length){
+      clearInterval(iv);
+      aiBubbleEl.innerHTML += notFoundHTML;
+      return;
+    }
+    const part = aiParts[partIdx];
+    charIdx++;
+    if(charIdx > part.content.length){
+      partIdx++; charIdx=0; return;
+    }
+    // rebuild HTML
+    let html='';
+    for(let p=0;p<partIdx;p++){
+      const pp = aiParts[p];
+      html += pp.type==='competitor'?`<span class="competitor">${pp.content}</span>`:pp.content.replace(/\n/g,'<br>');
+    }
+    const cur = aiParts[partIdx];
+    const partial = cur.content.slice(0,charIdx);
+    html += cur.type==='competitor'?`<span class="competitor">${partial}</span>`:partial.replace(/\n/g,'<br>');
+    aiBubbleEl.innerHTML = html;
+  }, 30);
+}
+
+// ── Stats CountUp ──
+ScrollTrigger.create({
+  trigger:'#statsCard',
+  start:'top 80%',
+  once:true,
+  onEnter:()=>{
+    document.querySelectorAll('.stat-number').forEach(el=>{
+      const target = parseFloat(el.dataset.target);
+      const suffix = el.dataset.suffix || '';
+      const isDecimal = el.dataset.decimal === 'true';
+      const obj = {val:0};
+      gsap.to(obj, {
+        val:target, duration:1.5, ease:'power2.out',
+        onUpdate:()=>{
+          el.textContent = (isDecimal ? obj.val.toFixed(1) : Math.round(obj.val)) + suffix;
+        }
+      });
+    });
+  }
+});
+
+// ── 3D Card Tilt ──
+const isMobile = window.innerWidth < 768;
+if(!isMobile){
+  document.querySelectorAll('[data-tilt]').forEach(card => {
+    const shine = card.querySelector('.shine');
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const cx = rect.width/2;
+      const cy = rect.height/2;
+      const rotY = ((x-cx)/cx)*6;
+      const rotX = ((cy-y)/cy)*6;
+      card.style.transform = `perspective(800px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+      if(shine){
+        shine.style.setProperty('--mx', x+'px');
+        shine.style.setProperty('--my', y+'px');
+        shine.style.opacity = '0.04';
+      }
+    });
+    card.addEventListener('mouseleave', () => {
+      gsap.to(card, {rotateX:0,rotateY:0,duration:0.5,ease:'power2.out',clearProps:'transform'});
+      if(shine) shine.style.opacity = '0';
+    });
+  });
+}
+
+// ── Score section animations ──
+ScrollTrigger.create({
+  trigger:'#scoreCard',
+  start:'top 80%',
+  once:true,
+  onEnter:()=>{
+    gsap.fromTo('#scoreCard',{scale:0.95,opacity:0},{scale:1,opacity:1,duration:0.7,ease:'power2.out'});
+    // count score
+    const scoreEl = document.getElementById('scoreNum');
+    const obj={val:0};
+    gsap.to(obj,{val:34,duration:1,ease:'power2.out',delay:0.2,onUpdate:()=>{scoreEl.textContent=Math.round(obj.val)}});
+    // bars
+    document.querySelectorAll('.dimension-fill').forEach((bar,i)=>{
+      gsap.to(bar,{width:bar.dataset.width+'%',duration:1.2,ease:'power2.out',delay:0.3+i*0.1});
+    });
+  }
+});
+
+// ── FAQ accordion ──
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.closest('.faq-item');
+    const answer = item.querySelector('.faq-a');
+    const inner = answer.querySelector('.faq-a-inner');
+    const isOpen = item.classList.contains('open');
+
+    // close all others
+    document.querySelectorAll('.faq-item.open').forEach(other => {
+      if(other !== item){
+        other.classList.remove('open');
+        gsap.to(other.querySelector('.faq-a'), {height:0, duration:0.35, ease:'power2.inOut'});
+      }
+    });
+
+    if(isOpen){
+      item.classList.remove('open');
+      gsap.to(answer, {height:0, duration:0.35, ease:'power2.inOut'});
+    } else {
+      item.classList.add('open');
+      gsap.set(answer, {height:'auto'});
+      const h = answer.offsetHeight;
+      gsap.fromTo(answer, {height:0}, {height:h, duration:0.35, ease:'power2.inOut'});
+    }
+  });
+});
+
+// ── Three.js Hero Particles ──
+function initHeroParticles(){
+  const canvas = document.getElementById('heroCanvas');
+  const renderer = new THREE.WebGLRenderer({canvas, alpha:true, antialias:false});
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight, 1, 1000);
+  camera.position.z = 300;
+
+  const count = isMobile ? 600 : 2000;
+  const geo = new THREE.BufferGeometry();
+  const positions = new Float32Array(count*3);
+  const speeds = new Float32Array(count);
+  for(let i=0;i<count;i++){
+    positions[i*3] = (Math.random()-0.5)*600;
+    positions[i*3+1] = (Math.random()-0.5)*600;
+    positions[i*3+2] = (Math.random()-0.5)*400;
+    speeds[i] = 0.02 + Math.random()*0.06;
+  }
+  geo.setAttribute('position', new THREE.BufferAttribute(positions,3));
+  const mat = new THREE.PointsMaterial({color:0x3dba7e, size:2, transparent:true, opacity:0.35, sizeAttenuation:true});
+  const points = new THREE.Points(geo, mat);
+  scene.add(points);
+
+  let mx=0, my=0;
+  document.addEventListener('mousemove', e=>{
+    mx = (e.clientX/window.innerWidth - 0.5)*0.1;
+    my = (e.clientY/window.innerHeight - 0.5)*0.1;
+  }, {passive:true});
+
+  function animate(){
+    requestAnimationFrame(animate);
+    const pos = geo.attributes.position.array;
+    for(let i=0;i<count;i++){
+      pos[i*3+1] += speeds[i];
+      if(pos[i*3+1] > 300) pos[i*3+1] = -300;
+    }
+    geo.attributes.position.needsUpdate = true;
+    points.rotation.y += (mx*0.05 - points.rotation.y)*0.02;
+    points.rotation.x += (my*0.05 - points.rotation.x)*0.02;
+    renderer.render(scene,camera);
+  }
+  animate();
+
+  window.addEventListener('resize', ()=>{
+    camera.aspect = window.innerWidth/window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+}
+window.addEventListener('load', initHeroParticles);
+
+// ── Three.js Wireframe Icosahedron — lazy ──
+function initWireframe(canvasId, scale){
+  const canvas = document.getElementById(canvasId);
+  if(!canvas) return;
+  const renderer = new THREE.WebGLRenderer({canvas, alpha:true, antialias:true});
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  const w = canvas.parentElement.offsetWidth;
+  const h = canvas.parentElement.offsetHeight;
+  renderer.setSize(w, h);
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(50, w/h, 1, 1000);
+  camera.position.z = 400;
+  const icoGeo = new THREE.IcosahedronGeometry(scale, 1);
+  const icoMat = new THREE.MeshBasicMaterial({color:0x3dba7e, wireframe:true, transparent:true, opacity:0.08});
+  const ico = new THREE.Mesh(icoGeo, icoMat);
+  scene.add(ico);
+
+  function animate(){
+    requestAnimationFrame(animate);
+    ico.rotation.y += 0.003;
+    ico.rotation.x += 0.001;
+    renderer.render(scene, camera);
+  }
+  animate();
+
+  window.addEventListener('resize', ()=>{
+    const nw = canvas.parentElement.offsetWidth;
+    const nh = canvas.parentElement.offsetHeight;
+    camera.aspect = nw/nh;
+    camera.updateProjectionMatrix();
+    renderer.setSize(nw, nh);
+  });
+}
+
+// Lazy init wireframes
+const wireframeObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      const id = entry.target.id;
+      if(id === 'scoreCanvas') initWireframe('scoreCanvas', 160);
+      if(id === 'finalCanvas') initWireframe('finalCanvas', 120);
+      wireframeObserver.unobserve(entry.target);
+    }
+  });
+}, {rootMargin:'200px'});
+
+const sc = document.getElementById('scoreCanvas');
+const fc = document.getElementById('finalCanvas');
+if(sc) wireframeObserver.observe(sc);
+if(fc) wireframeObserver.observe(fc);
+
+// ── Smooth scroll anchors ──
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click', e=>{
+    const target = document.querySelector(a.getAttribute('href'));
+    if(target){
+      e.preventDefault();
+      lenis.scrollTo(target, {offset:-80});
+    }
+  });
+});
+
+})();
+</script>
+</body>
+</html>
