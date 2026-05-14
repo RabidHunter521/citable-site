@@ -1,8 +1,6 @@
 # SeenBy — robots.txt
 # https://www.seenby.my
 
-Sitemap: https://www.seenby.my/sitemap.xml
-
 # ─── Tier 1: AI Search Crawlers ───
 User-agent: GPTBot
 Allow: /
@@ -61,3 +59,5 @@ Disallow: /
 # ─── All other crawlers ───
 User-agent: *
 Allow: /
+
+Sitemap: https://www.seenby.my/sitemap.xml
