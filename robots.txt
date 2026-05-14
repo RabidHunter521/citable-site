@@ -1,8 +1,14 @@
-User-agent: *
+# SeenBy Digital — robots.txt
+# seenby.my
+
+# ─── AI Crawlers — explicitly allowed ───
+User-agent: GPTBot
 Allow: /
 
-# AI Crawlers
-User-agent: GPTBot
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: anthropic-ai
 Allow: /
 
 User-agent: ClaudeBot
@@ -17,10 +23,27 @@ Allow: /
 User-agent: Googlebot
 Allow: /
 
-User-agent: OAI-SearchBot
-Allow: /
-
 User-agent: cohere-ai
 Allow: /
 
-Sitemap: https://www.seenby.my/sitemap.xml
+User-agent: Amazonbot
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: DuckAssistBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+# ─── All other crawlers ───
+User-agent: *
+Allow: /
