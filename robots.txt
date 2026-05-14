@@ -35,9 +35,6 @@ Allow: /
 User-agent: Applebot
 Allow: /
 
-User-agent: Bytespider
-Allow: /
-
 User-agent: DuckAssistBot
 Allow: /
 
@@ -47,3 +44,5 @@ Allow: /
 # ─── All other crawlers ───
 User-agent: *
 Allow: /
+
+Sitemap: https://www.seenby.my/sitemap.xml
