@@ -1,32 +1,33 @@
-# SeenBy
-
-> GEO agency in Petaling Jaya, Malaysia helping SME businesses get discovered and cited by ChatGPT, Perplexity, and Google AI Overviews.
+# SeenBy Digital
+> AI search visibility agency based in Petaling Jaya, Malaysia. We help Malaysian SME businesses get discovered, cited, and recommended by ChatGPT, Perplexity, and Google AI Overviews — through a practice called Generative Engine Optimization (GEO). SeenBy Digital is not a traditional SEO agency; we specialize exclusively in AI search visibility.
 
 ## Services
-
-- [GEO Audit — Starter](https://www.seenby.my/#pricing): One-time audit (RM 800) scoring AI visibility across five dimensions: citability, brand authority, content quality, technical foundations, and structured data. Delivered in 48 hours with two PDF reports and a 45-minute walkthrough call.
-- [Growth Retainer](https://www.seenby.my/#pricing): Monthly GEO optimization from RM 2,500. Includes ongoing schema markup, llms.txt maintenance, competitor monitoring, 30-day social media calendar, email nurture sequences, brand mention scanning, and monthly GEO score reports.
-
-## How It Works
-
-- [How SeenBy Works](https://www.seenby.my/#how-it-works): Four-step process — full 48-hour audit, scored priority fix list, implementation by SeenBy, and monthly monitoring with score tracking.
-
-## About
-
-- [GEO Score Explained](https://www.seenby.my/#score): SeenBy's 5-dimension GEO Score framework measuring AI search visibility across citability, brand authority, content quality, technical foundations, and structured data.
-- [FAQ](https://www.seenby.my/#faq): Answers to common questions including how GEO differs from SEO, expected timelines, website change requirements, and compatibility with existing SEO agencies.
+- [Basic Retainer](https://www.seenby.my/#pricing): Monthly GEO optimization at RM 2,000/month. Includes AI search visibility optimization, website SEO audit and recommendations, content strategy and writing suggestions, social media visibility recommendations across LinkedIn, Reddit, Instagram, X, and Wikipedia, plus monthly monitoring and reporting.
+- [Executive Retainer](https://www.seenby.my/#pricing): Full-service monthly GEO at RM 4,200/month. Includes everything in Basic plus full website SEO optimization and implementation, content writing up to 10 pages per month, and hands-on social media visibility execution across all five platforms.
 
 ## Key Facts
+- Business name: SeenBy Digital (SSM registered, Malaysia)
+- Founded by: Muhammad Faris Irfan, AI Engineer
+- Location: Petaling Jaya, Selangor, Malaysia
+- Industry: Generative Engine Optimization (GEO), AI Search Visibility
+- Core service: Monthly GEO retainer — AI search visibility optimization for Malaysian SMEs
+- Target clients: Malaysian SMEs in healthcare, F&B, professional services, property, retail, and SaaS
+- Pricing: RM 2,000/month (Basic); RM 4,200/month (Executive) — see website for current rates
+- Not a traditional SEO agency — specializes exclusively in AI search visibility
 
-- Founded by Muhammad Faris Irfan, AI Engineer with hands-on LLM pipeline, RAG system, and AI automation experience
-- Headquartered in Petaling Jaya, Selangor, Malaysia
-- Serves Malaysian SMEs across healthcare, F&B, professional services, property, retail, and SaaS verticals
-- Core service: 5-dimension GEO Score audit delivered in 48 hours
-- Pricing: RM 800 one-time audit; RM 2,500/month retainer
-- Registered business in Malaysia (SSM registered: SeenBy Digital)
-- Industry: Generative Engine Optimization (GEO), AI Search Visibility, Digital Marketing
+## How It Works
+- [How SeenBy Works](https://www.seenby.my/#how-it-works): Four-step process — 48-hour audit, scored priority fix list, implementation by SeenBy, and monthly monitoring with GEO score tracking.
+
+## About
+- [GEO Score Explained](https://www.seenby.my/#score): SeenBy's proprietary 5-dimension GEO Score (0–100) measuring AI search visibility across citability, brand authority, content quality, technical foundations, and structured data.
+- [About the Founder](https://www.seenby.my/#about): SeenBy Digital was founded by Muhammad Faris Irfan, an AI Engineer with hands-on experience building LLM pipelines, RAG systems, and AI automation workflows. SSM-registered business in Malaysia.
+- [FAQ](https://www.seenby.my/#faq): Common questions on how GEO differs from SEO, expected timelines, whether your website needs changes, and whether SeenBy works alongside existing SEO agencies.
+
 
 ## Contact
-
 - Website: https://www.seenby.my
 - Email: contact@seenby.my
+
+## Optional
+- [Pricing Details](https://www.seenby.my/#pricing)
+- [GEO Score Framework](https://www.seenby.my/#score)
