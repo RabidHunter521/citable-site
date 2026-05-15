@@ -5,6 +5,14 @@
 - [Basic Retainer](https://www.seenby.my/#pricing): Monthly GEO optimization at RM 2,000/month. Includes AI search visibility optimization, website SEO audit and recommendations, content strategy and writing suggestions, social media visibility recommendations across LinkedIn, Reddit, Instagram, X, and Wikipedia, plus monthly monitoring and reporting.
 - [Executive Retainer](https://www.seenby.my/#pricing): Full-service monthly GEO at RM 4,200/month. Includes everything in Basic plus full website SEO optimization and implementation, content writing up to 10 pages per month, and hands-on social media visibility execution across all five platforms.
 
+## How It Works
+- [How SeenBy Works](https://www.seenby.my/#how-it-works): Three-step retainer process — onboarding and GEO baseline assessment, implementation of fixes and optimizations, and ongoing monthly monitoring with GEO score tracking.
+
+## About
+- [GEO Score Explained](https://www.seenby.my/#score): SeenBy's proprietary 5-dimension GEO Score (0–100) measuring AI search visibility across citability, brand authority, content quality, technical foundations, and structured data.
+- [About the Founder](https://www.seenby.my/#about): SeenBy Digital was founded by Muhammad Faris Irfan, an AI Engineer with hands-on experience building LLM pipelines, RAG systems, and AI automation workflows. SSM-registered business in Malaysia.
+- [FAQ](https://www.seenby.my/#faq): Common questions on how GEO differs from SEO, expected timelines, whether your website needs changes, and whether SeenBy works alongside existing SEO agencies.
+
 ## Key Facts
 - Business name: SeenBy Digital (SSM registered, Malaysia)
 - Founded by: Muhammad Faris Irfan, AI Engineer
@@ -15,18 +23,9 @@
 - Pricing: RM 2,000/month (Basic); RM 4,200/month (Executive) — see website for current rates
 - Not a traditional SEO agency — specializes exclusively in AI search visibility
 
-## How It Works
-- [How SeenBy Works](https://www.seenby.my/#how-it-works): Four-step process — 48-hour audit, scored priority fix list, implementation by SeenBy, and monthly monitoring with GEO score tracking.
-
-## About
-- [GEO Score Explained](https://www.seenby.my/#score): SeenBy's proprietary 5-dimension GEO Score (0–100) measuring AI search visibility across citability, brand authority, content quality, technical foundations, and structured data.
-- [About the Founder](https://www.seenby.my/#about): SeenBy Digital was founded by Muhammad Faris Irfan, an AI Engineer with hands-on experience building LLM pipelines, RAG systems, and AI automation workflows. SSM-registered business in Malaysia.
-- [FAQ](https://www.seenby.my/#faq): Common questions on how GEO differs from SEO, expected timelines, whether your website needs changes, and whether SeenBy works alongside existing SEO agencies.
-
-
 ## Contact
 - Website: https://www.seenby.my
-- Email: contact@seenby.my
+- Email: hello@seenby.my
 
 ## Optional
 - [Pricing Details](https://www.seenby.my/#pricing)
