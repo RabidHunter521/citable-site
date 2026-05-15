@@ -1586,9 +1586,9 @@
       <h1 style="opacity:0">Your business,<br><span class="green">seen by AI.</span></h1>
       <p class="hero-sub" style="opacity:0">Right now, someone in KL is asking ChatGPT to recommend a business like
         yours. Your competitor's name comes up. Yours doesn't. We fix that — in 48 hours.</p>
-      <div style="opacity:0" id="heroCta">
-        <a href="mailto:contact@seenby.my?subject=Free GEO Score Request" class="btn-primary">Get your free GEO score
-          →</a>
+      <div style="opacity:0;display:flex;gap:12px;justify-content:center;flex-wrap:wrap" id="heroCta">
+        <a href="https://wa.me/601116698381?text=Hi%2C%20I%27d%20like%20to%20get%20my%20free%20GEO%20score%20from%20SeenBy" class="btn-primary">Get your free GEO score →</a>
+        <a href="mailto:contact@seenby.my?subject=Free GEO Score Request" class="btn-outline">Email us instead</a>
       </div>
       <p class="hero-proof" style="opacity:0">Free in 48 hours. No commitment. No agency pitch.</p>
     </div>
@@ -2057,9 +2057,8 @@
       <p class="final-sub anim-init">In 48 hours you'll know exactly where your business stands in AI search — and what
         it would take to start being seen. No commitment, no agency pitch, no fluff.</p>
       <div class="final-buttons anim-init">
-        <a href="mailto:contact@seenby.my?subject=Free GEO Score Request" class="btn-primary">Get my free score</a>
-        <a href="https://wa.me/60199973260?text=Hi%2C%20I%27d%20like%20to%20get%20my%20free%20GEO%20score%20from%20SeenBy"
-          class="btn-outline">WhatsApp us instead</a>
+        <a href="https://wa.me/601116698381?text=Hi%2C%20I%27d%20like%20to%20get%20my%20free%20GEO%20score%20from%20SeenBy" class="btn-primary">Get my free score</a>
+        <a href="mailto:contact@seenby.my?subject=Free GEO Score Request" class="btn-outline">Email us instead</a>
       </div>
       <p class="final-note anim-init">48 hours. Two PDF reports. Zero sales calls.</p>
     </div>
@@ -2315,7 +2314,7 @@
         const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 1000);
         camera.position.z = 300;
 
-        const count = isMobile ? 600 : 2000;
+        const count = isMobile ? 300 : 500;
         const geo = new THREE.BufferGeometry();
         const positions = new Float32Array(count * 3);
         const speeds = new Float32Array(count);
@@ -2336,8 +2335,8 @@
           my = (e.clientY / window.innerHeight - 0.5) * 0.1;
         }, { passive: true });
 
+        let heroRafId = null;
         function animate() {
-          requestAnimationFrame(animate);
           const pos = geo.attributes.position.array;
           for (let i = 0; i < count; i++) {
             pos[i * 3 + 1] += speeds[i];
@@ -2347,8 +2346,17 @@
           points.rotation.y += (mx * 0.05 - points.rotation.y) * 0.02;
           points.rotation.x += (my * 0.05 - points.rotation.x) * 0.02;
           renderer.render(scene, camera);
+          heroRafId = requestAnimationFrame(animate);
         }
-        animate();
+        new IntersectionObserver((entries) => {
+          if (entries[0].isIntersecting) {
+            if (!heroRafId) heroRafId = requestAnimationFrame(animate);
+          } else {
+            cancelAnimationFrame(heroRafId);
+            heroRafId = null;
+          }
+        }, { threshold: 0 }).observe(document.getElementById('hero'));
+        heroRafId = requestAnimationFrame(animate);
 
         window.addEventListener('resize', () => {
           camera.aspect = window.innerWidth / window.innerHeight;
